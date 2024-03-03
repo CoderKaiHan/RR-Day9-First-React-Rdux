@@ -11,7 +11,11 @@ function Counter() {
 
     const byAmountSubmit = (e) => {
         e.preventDefault()
-        dispatch(incrementByAmount(Number(input)))
+        if (!isNaN(input)){
+            dispatch(incrementByAmount(parseFloat(input)));
+        } else {
+            alert ('Please enter a valid number.');
+        }     
     }
 
 
@@ -27,7 +31,7 @@ function Counter() {
                 Decrement
             </button>
             <form onSubmit = {(e) => {byAmountSubmit(e)}}>
-                <input type='number' onChange={(e) => {setInput(e.target.value)}}/>
+                <input type='text' onChange={(e) => {setInput(e.target.value)}}/>
                 <button type='submit'>Submit</button>
             </form>
         </div>
