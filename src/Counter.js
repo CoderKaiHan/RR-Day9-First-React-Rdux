@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment, incrementByAmount } from './features/counterSlice';
 
 function Counter() {
-    const count = useSelector((state) => state.value);
+    const count = useSelector((state) => state.counter.value);
 
     const dispatch = useDispatch();
 
@@ -13,6 +13,7 @@ function Counter() {
         e.preventDefault()
         if (!isNaN(input)){
             dispatch(incrementByAmount(parseFloat(input)));
+            setInput(0);
         } else {
             alert ('Please enter a valid number.');
         }     
@@ -31,7 +32,7 @@ function Counter() {
                 Decrement
             </button>
             <form onSubmit = {(e) => {byAmountSubmit(e)}}>
-                <input type='text' onChange={(e) => {setInput(e.target.value)}}/>
+                <input type='text' value= {input} onChange={(e) => {setInput(e.target.value)}}/>
                 <button type='submit'>Submit</button>
             </form>
         </div>
